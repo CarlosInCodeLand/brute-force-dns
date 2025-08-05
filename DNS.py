@@ -2,8 +2,6 @@ import socket
 import sys
 from colorama import init, Fore, Back, Style
 
-init(autoreset=True)
-
 if len(sys.argv) == 3:
     dominio = sys.argv[1]
     wordlist = sys.argv[2]
