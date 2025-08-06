@@ -23,4 +23,14 @@ def cname():
     except:
         pass
 
-ip()
+def ipv6():
+    try:
+        resposta = dns.resolver.resolve(DOMINIO, 'AAAA')
+        for ipvs in resposta:
+            print(f'IPv6: {ipvs.to_text()}')
+            ipvseis = ipvs.to_text()
+            return ipvseis
+    except:
+        pass
+
+ipv6()
