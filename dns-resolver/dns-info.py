@@ -1,36 +1,41 @@
 import dns.resolver
+import dns.reversename
 import colorama
 
 DOMINIO = 'google.com'
 
-def ip():
+def ip(dominio):
     try:
-        resposta = dns.resolver.resolve(DOMINIO, 'A')
-        for ip in resposta:
-            print(f'IP: {ip.to_text()}')
-            ip_alvo = ip.to_text()
-            return ip_alvo
-    except:
-        pass
+        resposta = dns.resolver.resolve(dominio, 'A')
+        return [ip.to_text() for ip in resposta]
+    except Exception as e:
+        print(f"[Erro IP] {e}")
+        return []
 
-def cname():
+def cname(dominio):
     try:
-        resposta = dns.resolver.resolve(DOMINIO, 'CNAME')
-        for name in resposta:
-            print(f'CNAME: {name.target}')
-            name_alvo = name.target
-            return name
-    except:
-        pass
+        resposta = dns.resolver.resolve(dominio, 'CNAME')
+        return [rdata.target.to_text() for rdata in resposta]
+    except Exception as e:
+        print(f"[Erro CNAME] {e}")
+        return []
 
-def ipv6():
+def ipv6(dominio):
     try:
-        resposta = dns.resolver.resolve(DOMINIO, 'AAAA')
-        for ipvs in resposta:
-            print(f'IPv6: {ipvs.to_text()}')
-            ipvseis = ipvs.to_text()
-            return ipvseis
-    except:
-        pass
+        resposta = dns.resolver.resolve(dominio, 'AAAA')
+        return [rdata.to_text() for rdata in resposta]
+    except Exception as e:
+        print(f"[Erro PTR] {e}")
+        return[]
 
-ipv6()
+def ptr(dominio):
+    try:
+        ip_alvo = ip(dominio)[0]
+        reverso = dns.reversename.from_address(ip_alvo)
+        resposta = dns.resolver.resolve(reverso, 'PTR')
+        return [ptrval.to_text() for ptrval in resposta]
+    except Exception as e:
+        print(f"[Erro PTR] {e}")
+        return []
+
+
