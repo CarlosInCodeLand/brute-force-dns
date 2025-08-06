@@ -1,13 +1,13 @@
 # DNS Brute Force
 
-Este projeto é um script simples em Python para realizar brute force de subdomínios em um domínio alvo, utilizando uma wordlist.
+Este projeto contém um script em Python para realizar brute force de subdomínios em um domínio alvo, utilizando uma wordlist.
 
 ## Requisitos
 
-- Python 3.11 ou superior
+- Python 3.x
 - [colorama](https://pypi.org/project/colorama/)
 
-Você pode instalar as dependências usando o pip:
+Você pode instalar a dependência com:
 
 ```bash
 pip install colorama
@@ -18,7 +18,7 @@ pip install colorama
 Execute o script passando o domínio alvo e o caminho para a wordlist de subdomínios:
 
 ```bash
-python DNS.py <dominio> <wordlist>
+python dns-brute-force.py <dominio> <wordlist>
 ```
 
 - `<dominio>`: O domínio que você deseja testar (ex: exemplo.com)
@@ -27,7 +27,7 @@ python DNS.py <dominio> <wordlist>
 ### Exemplo
 
 ```bash
-python DNS.py exemplo.com dns-name-common.txt
+python dns-brute-force.py exemplo.com wordlist.txt
 ```
 
 O script irá tentar resolver cada subdomínio listado na wordlist para o domínio informado e mostrar os que forem encontrados.
@@ -35,7 +35,7 @@ O script irá tentar resolver cada subdomínio listado na wordlist para o domín
 ## Saída esperada
 
 - Subdomínios encontrados serão exibidos em azul e verde.
-- Se nenhum argumento for passado, será exibida uma mensagem de uso.
+- Se os argumentos não forem passados corretamente, será exibida uma mensagem de uso.
 
 ## Observações
 
