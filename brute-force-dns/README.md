@@ -1,47 +1,51 @@
-# DNS Brute Force
+# brute-force-dns
 
-Este projeto contém um script em Python para realizar brute force de subdomínios em um domínio alvo, utilizando uma wordlist.
+Ferramentas para brute force e reconhecimento de subdomínios DNS.
+
+## Estrutura da pasta
+
+- `dns-brute-force.py`: Script em Python para brute force de subdomínios usando uma wordlist.
+- `dns_scan.sh`: Script em Bash para varredura de subdomínios via ping.
+- `common-dns-name.txt`: Wordlist de subdomínios comuns para uso nos scripts.
+- `requirements.txt`: Dependências Python necessárias para rodar o script principal.
+- `brute/`: Ambiente virtual Python (opcional, pode ser ignorado se não for usar o venv).
 
 ## Requisitos
 
 - Python 3.x
-- [colorama](https://pypi.org/project/colorama/)
-
-Você pode instalar a dependência com:
-
-```bash
-pip install colorama
-```
+- [colorama](https://pypi.org/project/colorama/) (instale com `pip install -r requirements.txt`)
+- Bash (para rodar o script shell)
 
 ## Como usar
 
-Execute o script passando o domínio alvo e o caminho para a wordlist de subdomínios:
+### Python (`dns-brute-force.py`)
 
 ```bash
 python dns-brute-force.py <dominio> <wordlist>
 ```
 
-- `<dominio>`: O domínio que você deseja testar (ex: exemplo.com)
-- `<wordlist>`: Caminho para o arquivo de texto contendo os possíveis subdomínios (um por linha)
+- `<dominio>`: O domínio alvo (ex: exemplo.com)
+- `<wordlist>`: Caminho para a wordlist de subdomínios (ex: common-dns-name.txt)
 
-### Exemplo
-
+Exemplo:
 ```bash
-python dns-brute-force.py exemplo.com wordlist.txt
+python dns-brute-force.py exemplo.com common-dns-name.txt
 ```
 
-O script irá tentar resolver cada subdomínio listado na wordlist para o domínio informado e mostrar os que forem encontrados.
+### Bash (`dns_scan.sh`)
 
-## Saída esperada
-
-- Subdomínios encontrados serão exibidos em azul e verde.
-- Se os argumentos não forem passados corretamente, será exibida uma mensagem de uso.
+```bash
+chmod +x dns_scan.sh
+./dns_scan.sh common-dns-name.txt
+```
+O script solicitará o domínio alvo e fará a varredura via ping.
 
 ## Observações
 
-- O script ignora subdomínios que não resolvem (não existem).
-- Certifique-se de ter permissão para realizar testes no domínio alvo.
+- O script Python destaca subdomínios encontrados em cores.
+- O script Bash mostra progresso a cada 50 subdomínios testados.
+- Certifique-se de ter permissão para testar o domínio alvo.
 
 ---
 
-Projeto para fins educacionais. 
+Projeto para fins educacionais e experimentação. 

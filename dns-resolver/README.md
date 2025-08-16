@@ -1,8 +1,16 @@
-# DNS Info Resolver (Em Progresso)
+# DNS Info Resolver
 
-Este projeto contém um script em Python para consultar diferentes tipos de registros DNS de um domínio, como A, CNAME, AAAA (IPv6) e PTR (reverso).
+Este projeto é um utilitário em Python para consultar rapidamente registros DNS de qualquer domínio, exibindo resultados de forma colorida e amigável no terminal.
 
-⚠️ **Projeto em desenvolvimento!** Algumas funcionalidades podem não estar finalizadas ou podem ser alteradas.
+## Funcionalidades
+
+- Consulta registros:
+  - **A** (IPv4)
+  - **AAAA** (IPv6)
+  - **CNAME**
+  - **PTR** (reverso, a partir de cada IP encontrado)
+- Saída colorida para facilitar a visualização dos resultados e avisos.
+- Mensagens claras caso algum registro não seja encontrado.
 
 ## Requisitos
 
@@ -18,25 +26,29 @@ pip install dnspython colorama
 
 ## Como usar
 
-O script está configurado para consultar o domínio `google.com` por padrão, mas você pode alterar a variável `DOMINIO` no início do arquivo para o domínio desejado.
-
-Execute o script normalmente:
+Execute o script passando o domínio desejado como argumento:
 
 ```bash
-python dns-info.py
+python3 dns-info.py <DOMINIO>
 ```
 
-## Funções disponíveis
+Exemplo:
 
-- `ip(dominio)`: Retorna os endereços IPv4 (A) do domínio.
-- `cname(dominio)`: Retorna os registros CNAME do domínio.
-- `ipv6(dominio)`: Retorna os endereços IPv6 (AAAA) do domínio.
-- `ptr(dominio)`: Retorna o registro PTR (reverso) do domínio.
+```bash
+python3 dns-info.py globo.com
+```
+
+## O que o script faz
+
+- Mostra todos os endereços IPv4 e, para cada um, tenta mostrar o PTR (reverso).
+- Mostra todos os endereços IPv6, se existirem.
+- Mostra todos os registros CNAME, se existirem.
+- Exibe mensagens amigáveis caso algum tipo de registro não seja encontrado.
 
 ## Observações
 
-- O script imprime mensagens de erro caso algum registro não seja encontrado ou ocorra falha na consulta.
-- O projeto está em progresso e pode receber melhorias e novas funcionalidades.
+- O script imprime avisos apenas para erros inesperados. Se um registro não existir, apenas informa "Nenhum ... encontrado".
+- O projeto está em desenvolvimento e pode receber melhorias.
 
 ---
 
