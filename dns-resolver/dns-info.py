@@ -39,7 +39,9 @@ def ptr(ip_alvo):
         return []
 
 if __name__ == "__main__":
+
     if len(sys.argv) == 2:
+        
         dominio = sys.argv[1]
         ips = ip(dominio)
         cnames = cname(dominio)
@@ -54,16 +56,19 @@ if __name__ == "__main__":
                         print(colorama.Fore.CYAN + f"PTR: {ptrs}")
         else:
             print(colorama.Fore.REd + "Nenhum IP encontrado")
+
         if ipv6s:
             for ipv6 in ipv6s:
                 print(colorama.Fore.GREEN + f"IPv6: {ipv6}")
         else:
             print(colorama.Fore.RED + "Nenhum IPv6 encontrado")
+
         if cnames:
             for cname in cnames:
                 print(colorama.Fore.GREEN + f"CNAME: {cname}")
         else:
             print(colorama.Fore.RED + "Nenhum cname encontrado")
+
     else:
         print(colorama.Fore.BLUE + """
 =====================================
